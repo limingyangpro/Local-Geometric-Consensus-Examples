@@ -4,18 +4,24 @@ cd "${rootdir}"
 absrootdir="$PWD"
 
 #compile input ouput library
-cd "${absrootdir}/io/build"
+cd "${absrootdir}/io/"
+mkdir build
+cd build
 echo "Compiling subdirectory $PWD..."
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j2
 
 #compile examples and applications
-cd "${absrootdir}/examples/build"
+cd "${absrootdir}/examples"
+mkdir build
+cd build
 echo "Compiling subdirectory $PWD..."
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j2
 
-cd "${absrootdir}/applications/build"
+cd "${absrootdir}/applications"
+mkdir build
+cd build
 echo "Compiling subdirectory $PWD..."
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j2

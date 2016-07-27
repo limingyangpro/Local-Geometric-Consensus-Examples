@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+=================The structure of the file====================================
+<ModelList> :        contains a list of model, each one is associated with a "marker".
+<ModelName1>:        The name of the first model, which can be any string.
+<offset>:            The offset of the "marker". Sometimes, point coordinates in a marker have very large values
+                     (such as those retrieved from GIS), "offset" can remove the common large values
+<scale> (1st):       The scale of the "marker". Same purpose as "offset" but using "scaling".
+<referencefilename>: File which contains a list of reference points producing the "marker". More info, see section
+                     "reference file" below
+<ObjectList>:        A list of 3D objects in current model.
+<cow>:               The name of one 3D objects, which can be any string.
+<filename>:          3D object file
+<scale> (2nd):       Scale of the 3D object
+<transformation>:    Transformation of the 3D object relative to the marker. (see "Transformation" section below)
+
+<camera_parameter_file>: Camera parameter file to use. It's the result of a calibration of OpenCV. cf. logitech720.xml
+<video>:             Input of the video stream. Can be the name of your video file, or the ID of your camera.
+
+=================reference file==============================
+The format of the reference file:
+n
+x1 y1
+x2 y2
+...
+xn yn
+
+n: number of points contained in the list
+x1 y1: coordinate of the first point.
+NOTE: 
+1. Points having the same cooridates are forbiden.
+2. This file accepts no comments, any incorrect formating can lead to a failure.
+
+=================Transformation: How to find the correct orientation of an 3D object ? ======================
+    In OSG, camera_coordinate->TRS->reference_marker_coordinate->T->R->S->object coordinate
+    i.e. reference_marker_coordinate = coordinate_in_obj*S*R*T
+    The transformation matrix is used to align 3D model with the reference point set
+    The transformation matrix will not influenced by scaling
+
+    The referencearrow.osg 3D object can be used to visualize the origne and scale of the marker. It can help
+    to well position other 3D models as well (such as find the z=0 plan).
+ 
+    It contains an planar arrow, which points at (1.0f, 0f, 0f)
+    Its width is 1 unit and its length is 2 unit, z is at 0
+    osg::Vec3 myCoords[] =
+    {
+    	osg::Vec3(-1.0f, -0.5f, 0.0f),
+	osg::Vec3(-1.0f,  0.5f, 0.0f),
+	osg::Vec3( 0.0f,  0.5f, 0.0f),
+	osg::Vec3( 1.0f,  0.0f, 0.0f),
+	osg::Vec3( 0.0f, -0.5f, 0.0f)
+    };
+
+Transformation matrix:
+x  y  z   in the marker system
+A  B  C  0
+D  E  F  0
+G  H  I  0
+J  K  L  1
+
+A~I: rotation or reflection
+(J,K,L): translation in the marker system
+
+Some object transformations:
+Old matrix                                   New matrix
+1 0 0 0                                  1 0 0 0 
+0 0 1 0                                  0 0 1 0 
+0 1 0 0  Invert y in the marker system   0 -1 0 0
+0 0 0 1                                  0 0 0 1
+
+1 0 0 0                                            1 0 0 0 
+0 0 1 0                                            0 0 1 0 
+0 1 0 0  Move 10 unit in +z in the marker system   0 1 0 0
+0 0 0 1                                            0 0 10 1
+
+======================================
+-->
+<ModelList>
+    <ModelName1>
+	<offset>1500 1000</offset>
+	<scale>0.01</scale>
+	<referencefilename>../models/A4Pattern.txt</referencefilename>
+        <ObjectList>
+	        <cow>
+        		<filename>cow.osg</filename>
+        		<scale>2</scale>
+                        <transformation>0 1 0 0
+                                        1 0 0 0
+                                        0 0 1 0
+                                        0 0 0 1
+			</transformation>
+		</cow>
+        </ObjectList>
+    </ModelName1>
+</ModelList>
+<camera_parameter_file>../cameraParameters/IPAD_air_video.xml</camera_parameter_file>
+<video>
+    <Stream_Name>../videos/example.mov</Stream_Name>
+    <width>1920</width>
+    <height>1080</height>
+</video>

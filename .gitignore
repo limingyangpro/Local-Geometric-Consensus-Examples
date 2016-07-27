@@ -1,4 +1,7 @@
-models/
+models/*
+!models/*.xml
 videos/
 **/*.zip
 **/*~
+build/
+*.a
