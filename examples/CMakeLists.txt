@@ -24,8 +24,15 @@ if (PCL_FOUND)
 endif (PCL_FOUND)
 
 #set link directories for lgc
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../io/build)
+#message("Find lgc in: ${CMAKE_CURRENT_SOURCE_DIR}/../src")
+#link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
+#link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../io/build)
+
+add_library(lgc SHARED IMPORTED)
+set_target_properties(lgc PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/../src/liblgc.a")
+
+add_library(io SHARED IMPORTED)
+set_target_properties(io PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/../io/build/libio.a")
 
 add_executable(osgexample osgexample.cpp)
 target_link_libraries(

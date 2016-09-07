@@ -10,14 +10,15 @@ sudo apt-get install cmake
 http://opencv.org/downloads.html
 
 3. Install PCL
-sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
-sudo apt-get update
-sudo apt-get install libpcl-all
+sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl<br />
+sudo apt-get update<br />
+sudo apt-get install libpcl-all<br />
 
 4. Install OpenSceneGraph (3.4.0)
 http://www.openscenegraph.org/index.php/download-section/stable-releases
 
-5. Download LGC binary
+5. Download LGC binary and put inside root/src/
+https://dl.dropboxusercontent.com/u/274381971/GItLGC/liblgc.a
 
 ### Complie (Unbuntu)
 run script "compileAll.sh"
@@ -42,10 +43,10 @@ b) To augment a point set with a cow:
 ### Run applications
 1. cd into "applications" sub-directory
 2. run applications:
-a) To click and track 2D planar objects (support multi-models):
-./build/textureTracking -v ../videos/diverseTargets.mpg
-b) To augment different engineering draws (support multi-models):
-./build/augmentingDrawings ../models/demo.xml
+a) To click and track 2D planar objects (support multi-models):<br />
+./build/textureTracking -v ../videos/diverseTargets.mpg<br />
+b) To augment different engineering draws (support multi-models):<br />
+./build/augmentingDrawings ../models/demo.xml<br />
 
 ## Contributing
 1. Fork it!
