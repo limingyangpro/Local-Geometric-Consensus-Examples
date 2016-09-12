@@ -114,14 +114,18 @@ int main(int argc, char **argv)
 	 */
 	GoodFeatureDetector kpdetector;
 	inputVideo = new DetectFromVideo(&kpdetector);
-	if (videoname.compare("") == 0)
-	{
-		inputVideo->readFrom(1);
-	}
-	else
-	{
-		inputVideo->readFrom(videoname);
-	}
+    char * p ;
+    int camID = strtol(videoname.c_str(), &p, 10 );
+
+    if (*p == 0) //mloader.inputVideo is an integer
+    {
+        inputVideo->readFrom(camID);
+    }
+    else
+    {
+        inputVideo->readFrom(videoname);
+    }
+
 //	inputVideo->printInfo(cout);
 
 	/**
