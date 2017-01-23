@@ -112,7 +112,7 @@ int main(int argc, char **argv)
 	/**
 	 * Initialize video sequence
 	 */
-	GoodFeatureDetector kpdetector;
+	GoodFeatureDetector kpdetector(200, 0.08, 10, 12);
 	inputVideo = new DetectFromVideo(&kpdetector);
     char * p ;
     int camID = strtol(videoname.c_str(), &p, 10 );
@@ -196,13 +196,6 @@ int main(int argc, char **argv)
 		std::stringstream ss;
 		{
 			input = inputVideo->getImage()->clone();
-			for (unsigned int i = 0 ; i < modelID_vector.size() ; i++)
-			{
-				resultImage = drawOpenCV(&input, NULL , NULL, &referencepoint, NULL, homo_vector[i]);
-				input = resultImage.clone();
-			}
-
-			resultImage = drawOpenCV(&input, &scenepoint , NULL, NULL, NULL, cv::Mat::eye(3,3,CV_32F));
 
 			if (modelID_vector.size() == 0)
 			{
@@ -212,6 +205,20 @@ int main(int argc, char **argv)
 			{
 				ss << "Found model ";
 			}
+
+			for (unsigned int i = 0 ; i < modelID_vector.size() ; i++)
+			{
+				resultImage = drawOpenCV(&input, NULL , NULL, &referencepoint, NULL, homo_vector[i]);
+				input = resultImage.clone();
+                ss << modelID_vector[i];
+                if (i !=  modelID_vector.size() - 1)
+                {
+                    ss <<", ";
+                }
+			}
+
+			resultImage = drawOpenCV(&input, &scenepoint , NULL, NULL, NULL, cv::Mat::eye(3,3,CV_32F));
+
 			putText(resultImage, ss.str(), cvPoint(30,30), cv::FONT_HERSHEY_COMPLEX_SMALL, 1.5, cvScalar(0,0,0), 1, CV_AA);
 
 			ss.str("");

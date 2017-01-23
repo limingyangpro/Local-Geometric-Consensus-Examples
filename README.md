@@ -1,5 +1,9 @@
 # Local-Geometric-Consensus-Examples
 
+## Executable is available in windows
+Download link: <br />
+https://dl.dropboxusercontent.com/u/274381971/GItLGC/demo.zip
+
 ## Installation (Linux Only)
 
 ### Prerequisites (Unbuntu)
