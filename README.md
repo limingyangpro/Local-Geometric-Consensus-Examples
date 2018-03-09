@@ -2,7 +2,7 @@
 
 ## Executable is available in windows
 Download link: <br />
-https://dl.dropboxusercontent.com/u/274381971/GItLGC/demo.zip
+https://www.dropbox.com/s/xf9uraf9u3y7uqf/demo.zip?dl=0
 
 ## Installation (Linux Only)
 
@@ -22,7 +22,7 @@ sudo apt-get install libpcl-all<br />
 http://www.openscenegraph.org/index.php/download-section/stable-releases
 
 5. Download LGC binary and put inside root/src/<br />
-https://dl.dropboxusercontent.com/u/274381971/GItLGC/liblgc.a
+https://www.dropbox.com/s/xmp6sp2n5y1r2z5/liblgc.a?dl=0
 
 ### Complie (Unbuntu)
 run script "compileAll.sh"
@@ -31,10 +31,10 @@ run script "compileAll.sh"
 
 ### Download models and pre-record videos
 1. Download models, extract it and put files inside "models" folder:<br />
-https://dl.dropboxusercontent.com/u/274381971/GItLGC/models.zip
+https://www.dropbox.com/s/7i4hki5kp1qoc9o/models.zip?dl=0
 
 2. Download videos, extract it and put files inside "videos" folder:<br />
-https://dl.dropboxusercontent.com/u/274381971/GItLGC/videos.zip
+https://www.dropbox.com/s/tw7e1e5g4a4pw18/videos.zip?dl=0
 
 ### Run examples 
 1. cd into "examples" sub-directory<br />
